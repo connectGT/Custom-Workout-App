@@ -15,22 +15,38 @@ import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 
 private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
-    secondary = PurpleGrey80,
-    tertiary = Pink80
+    primary = NeonGreen,
+    secondary = ElectricBlue,
+    tertiary = WhiteText,
+    background = DeepBlack,
+    surface = DarkSurface,
+    surfaceVariant = LightSurface,
+    onPrimary = DeepBlack,
+    onSecondary = DeepBlack,
+    onBackground = WhiteText,
+    onSurface = WhiteText,
+    onSurfaceVariant = GreyText
 )
 
 private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
-    secondary = PurpleGrey40,
-    tertiary = Pink40
+    primary = NeonGreen,
+    secondary = ElectricBlue,
+    tertiary = DeepBlack,
+    background = WhiteText,
+    surface = WhiteText,
+    surfaceVariant = GreyText,
+    onPrimary = DeepBlack,
+    onSecondary = DeepBlack,
+    onBackground = DeepBlack,
+    onSurface = DeepBlack,
+    onSurfaceVariant = DarkSurface
 )
 
 @Composable
 fun GuruDevWorkoutTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    // Dynamic color is available on Android 12+
-    dynamicColor: Boolean = true,
+    // We disable dynamic color by default for our intense fitness theme
+    dynamicColor: Boolean = false,
     content: @Composable () -> Unit
 ) {
     val colorScheme = when {
@@ -39,7 +55,7 @@ fun GuruDevWorkoutTheme(
             if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
         }
         darkTheme -> DarkColorScheme
-        else -> LightColorScheme
+        else -> DarkColorScheme // Force dark theme everywhere for the intense vibe
     }
     val view = LocalView.current
     if (!view.isInEditMode) {
